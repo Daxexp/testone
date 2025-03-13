@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Stream</title>
+    <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet">
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+      .video-container {
+        width: 90%; /* Increase the width to make the player bigger */
+        max-width: 1000px; /* You can adjust this max width as per your preference */
+        margin: 0 auto;
+      }
+      #videoPlayer {
+        width: 100%; /* The player will now take up the full width of its container */
+        height: 600px; /* Adjust the height to your desired size */
+      }
+      .channel-name {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+      .back-button {
+        background-color: #dc3545;
+        color: white;
+        padding: 10px 15px;
+        font-size: 1rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+        transition: background-color 0.3s;
+      }
+      .back-button:hover {
+        background-color: #c82333;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="channel-name" id="channelName"></div>
+    <div class="video-container">
+      <video id="videoPlayer" class="video-js vjs-default-skin" controls preload="auto">
+        <source id="streamSource" type="application/x-mpegURL">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <button class="back-button" onclick="window.location.href='index.html'">Back to Channel List</button>
+
+    <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
+    <script>
+      // Get channel name and stream URL from the URL parameters
+      const urlParams = new URLSearchParams(window.location.search);
+      const channelName = urlParams.get('channel');
+      const streamURL = urlParams.get('stream');
+
+      // Set the channel name and stream URL
+      document.getElementById('channelName').textContent = channelName;
+      document.getElementById('streamSource').src = streamURL;
+
+      // Initialize the video player
+      var player = videojs('videoPlayer');
+      player.ready(function() {
+        player.play(); // Start playback when player is ready
+      });
+
+      // Disable right-click
+      document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+      });
+    </script>
+  </body>
+</html>
