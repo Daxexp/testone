@@ -1,151 +1,82 @@
 <!DOCTYPE html>
-      <html lang="en">
-        <head>
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>THE.BUDDHIST.TV.🔴.LIVE.STREAM </title>
-          <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet">
-          <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZFLvD_Wf-CVqNq2mD7zIkcchMxJAZwnKeCA&s" type="image/png">
-          <style>
-            body { 
-              font-family: Arial, sans-serif; 
-              margin: 0;
-              padding: 0;
-              background: linear-gradient(135deg, #70e1f5, #ffd194, #f5a9b8); 
-              background-size: 400% 400%; 
-              animation: waveAnimation 30s ease-in-out infinite; 
-              height: 100vh;
-              overflow: hidden; /* Prevent scrollbars */
-              display: flex;
-              justify-content: center;
-              align-items: center; 
-              flex-direction: column; /* Center content vertically */
-              position: relative; /* Required for positioning the watermark */
-            }
-            @keyframes waveAnimation {
-              0% { background-position: 0% 0%; }
-              50% { background-position: 100% 100%; }
-              100% { background-position: 0% 0%; }
-            }
-            .title-image {
-              width: 100%;
-              max-width: 800px; /* Adjust as needed */
-              height: auto; /* Maintain aspect ratio */
-              margin-top: 20px; /* Pushes the image further down */
-              margin-bottom: 20px; /* Space below the image */
-              border: 5px solid #ffffff; /* White border for the title image */
-              border-radius: 10px; /* Rounded corners for the border */
-              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for better visibility */
-            }
-            .button-container {
-              text-align: center;
-              margin-bottom: 20px;
-            }
-            .play-button {
-              font-size: 1.2rem;
-              padding: 15px 25px;
-              border: 2px solid transparent;
-              background-color: #dc3545; /* Deep Red */
-              color: white;
-              border-radius: 12px; /* More rounded corners for a softer look */
-              cursor: pointer;
-              position: relative;
-              transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
-              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), inset 0 -2px 5px rgba(0, 0, 0, 0.2); /* 3D effect */
-            }
-            .play-button::before {
-              content: '';
-              position: absolute;
-              top: 50%;
-              left: 50%;
-              width: 100%;
-              height: 100%;
-              border: 2px solid #dc3545; /* Deep Red */
-              border-radius: 12px; /* Match button corners */
-              transform: translate(-50%, -50%) scale(1);
-              transition: transform 0.3s ease;
-              z-index: 0;
-            }
-            .play-button:hover::before {
-              transform: translate(-50%, -50%) scale(1.1);
-            }
-            .play-button:hover {
-              background-color: #c82333; /* Darker Red */
-              transform: scale(1.05); /* Slightly enlarge the button on hover */
-              box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4), inset 0 -2px 5px rgba(0, 0, 0, 0.3); /* Enhanced 3D effect on hover */
-            }
-            .play-button span {
-              position: relative;
-              z-index: 1;
-            }
-            .video-container {
-              width: 360px; /* Fixed width */
-              height: 202px; /* Reduced height */
-              display: flex;
-              justify-content: center; /* Center horizontally */
-              align-items: center; /* Center vertically */
-              border: 5px solid #ffffff; /* Border around the video player */
-              border-radius: 10px; /* Rounded corners for the border */
-              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for better visibility */
-            }
-            .video-js {
-              width: 100%; /* Ensure video player takes full width of container */
-              height: 100%; /* Ensure video player takes full height of container */
-              border-radius: 10px; /* Match border radius of the container */
-            }
-            .watermark-container {
-              position: absolute;
-              bottom: 10px; /* Adjust as needed */
-              right: 10px; /* Adjust as needed */
-              width: 100px; /* Adjust size as needed */
-              height: auto; /* Maintain aspect ratio */
-              opacity: 0.5; /* Adjust opacity as needed */
-            }
-            .watermark {
-              width: 100%; /* Ensure the watermark image fits within the container */
-              height: auto; /* Maintain aspect ratio */
-            }
-            .bottom-title-image {
-              width: 100%;
-              max-width: 800px; /* Adjust as needed */
-              height: auto; /* Maintain aspect ratio */
-              margin-top: 20px; /* Space above the image */
-              border: 5px solid #ffffff; /* White border for the bottom image */
-              border-radius: 10px; /* Rounded corners for the border */
-              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for better visibility */
-            }
-          </style>
-        </head>
-        <body>
-          <img src="https://thebuddhisttv.wordpress.com/wp-content/uploads/2010/12/cropped-the-buddhist-22.jpg" alt="Page Title" class="title-image">
-          <div class="button-container">
-            <button class="play-button" id="playButton"><span>Play Live Stream</span></button>
-          </div>
-          <div class="video-container" id="videoContainer" style="display: none;">
-            <video id="videoPlayer" class="video-js vjs-default-skin" controls preload="auto">
-              <source src="https://edge3-moblive.yuppcdn.net/trans1sd/smil:dbud28.smil/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9MDMvMTAvMjAyNCAxMTowNjoxMSBBTSZoYXNoX3ZhbHVlPWNZbXlrc0x1YzN3bkNDdFdmbjFnaHc9PSZ2YWxpZG1pbnV0ZXM9NSZpZD15dXBwdHZvdHRfNV8yMDE3NzBfYTA0NmIxNGUtYzBiNS1mOTAzLTgzZjUtZDE3YzY0MmE1YTFjX0xLXzE3NS4xNTcuMTM2LjkwX3NsdF8xX2NoYW5uZWxfMjhfLTEmc3RybV9sZW49MjU=" type="application/x-mpegURL">
-              Your browser does not support the video tag.
-            </video>
-          </div>
-          <a href="https://www.youtube.com/@TheBuddhistTV/streams" target="_blank" class="watermark-container">
-            <img src="https://yt3.googleusercontent.com/byrVbEGaYhNlgFfFfq40YJgu80ee90f7BXAHuTj-yZwBpXCK7MxWU2L4hvsWEiQmDsKv7yRuGVs=s900-c-k-c0x00ffffff-no-rj" alt="Watermark" class="watermark">
-          </a>
-          <img src="https://thebuddhisttv.wordpress.com/wp-content/uploads/2010/12/cropped-the-buddhist-22.jpg" alt="Page Title Bottom" class="bottom-title-image">
-          <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
-          <script>
-            document.getElementById('playButton').addEventListener('click', function() {
-              document.querySelector('.button-container').style.display = 'none';
-              document.getElementById('videoContainer').style.display = 'flex';
-              var player = videojs('videoPlayer');
-              player.ready(function() {
-                player.play(); // Start playback when player is ready
-              });
-            });
-  
-            // Disable right-click
-            document.addEventListener('contextmenu', function(e) {
-              e.preventDefault();
-            });
-          </script>
-        </body>
-      </html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Channel List</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+      h1 {
+        font-size: 2rem;
+        margin-bottom: 30px;
+      }
+      .channel-list {
+        list-style-type: none;
+        padding: 0;
+      }
+      .channel-item {
+        display: flex;
+        align-items: center;
+        margin: 20px 0;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 80%;
+        max-width: 600px;
+      }
+      .channel-logo {
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+        margin-right: 20px;
+      }
+      .channel-name {
+        flex-grow: 1;
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+      .watch-button {
+        background-color: #dc3545;
+        color: white;
+        padding: 10px 15px;
+        font-size: 1rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      .watch-button:hover {
+        background-color: #c82333;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Available Channels</h1>
+    <ul class="channel-list">
+      <!-- TV Derana -->
+      <li class="channel-item">
+        <img src="https://www.slt.lk/sites/default/files/channel_images/004-Derana_0.jpg" alt="TV Derana Logo" class="channel-logo">
+        <span class="channel-name">TV Derana</span>
+        <a href="stream_page.html?channel=TV%20Derana&stream=https://edge2-moblive.yuppcdn.net/transhd2/smil:detv04.smil/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9MDMvMTAvMjAyNCAxMToyMzozMCBBTSZoYXNoX3ZhbHVlPXN0aU85Umg2R1ZCMzZ0Y0lkVStmZ0E9PSZ2YWxpZG1pbnV0ZXM9NSZpZD15dXBwdHZvdHRfNV8yMDE3NzBfYTA0NmIxNGUtYzBiNS1mOTAzLTgzZjUtZDE3YzY0MmE1YTFjX0xLXzE3NS4xNTcuMTM2LjkwX3NsdF8xX2NoYW5uZWxfNF8tMSZzdHJtX2xlbj0yNQ==" class="watch-button">Watch Now</a>
+      </li>
+      <!-- Sirasa TV -->
+      <li class="channel-item">
+        <img src="https://www.slt.lk/sites/default/files/channel_images/sirasaTv_0.jpg" alt="Sirasa TV Logo" class="channel-logo">
+        <span class="channel-name">Sirasa TV</span>
+        <a href="stream_page.html?channel=Sirasa%20TV&stream=https://edge3-moblive.yuppcdn.net/transsd/smil:sirtv09.smil/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9MDMvMTAvMjAyNCAxMToxMzo1MyBBTSZoYXNoX3ZhbHVlPWxTdVZPMHpONjVtTHkzTS9MWjkvUEE9PSZ2YWxpZG1pbnV0ZXM9NSZpZD15dXBwdHZvdHRfNV8yMDE3NzBfYTA0NmIxNGUtYzBiNS1mOTAzLTgzZjUtZDE3YzY0MmE1YTFjX0xLXzE3NS4xNTcuMTM2LjkwX3NsdF8xX2NoYW5uZWxfOV8tMSZzdHJtX2xlbj0yNQ==" class="watch-button">Watch Now</a>
+      </li>
+    </ul>
+  </body>
+</html>
