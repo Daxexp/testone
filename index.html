@@ -1,158 +1,151 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Open Live Stream in Default Player</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            background: url('https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/a77f76186960457.657f0d3451d77.jpg') no-repeat center center;
-            background-size: cover;
-        }
-        .link-container {
-            text-align: center;
-            position: relative;
-        }
-        .button {
-            background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1)), url('https://upload.wikimedia.org/wikipedia/en/8/89/2024_ICC_Men%27s_T20_World_Cup_logo.svg') no-repeat center center;
-            background-size: contain;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: transform 0.3s, opacity 0.3s, filter 0.3s;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-            animation: borderAnimation 3s infinite;
-            width: 200px;
-            height: 200px;
-            font-weight: bold;
-            font-family: 'Arial Black', Gadget, sans-serif;
-            font-size: 20px;
-            color: white;
-        }
-        .button:hover {
-            transform: scale(1.05);
-        }
-        .button.hidden {
-            opacity: 0;
-            filter: brightness(50%);
-        }
-        .cricket-ball {
-            width: 60px;
-            height: 60px;
-            background: url('https://cdn.pixabay.com/photo/2014/03/25/15/41/cricket-297126_960_720.png') no-repeat center center;
-            background-size: contain;
-            position: absolute;
-            bottom: 0;
-            animation: bounce 1s infinite alternate;
-        }
-        @keyframes bounce {
-            0% {
-                transform: translateY(0);
+      <html lang="en">
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>THE.BUDDHIST.TV.🔴.LIVE.STREAM </title>
+          <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet">
+          <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZFLvD_Wf-CVqNq2mD7zIkcchMxJAZwnKeCA&s" type="image/png">
+          <style>
+            body { 
+              font-family: Arial, sans-serif; 
+              margin: 0;
+              padding: 0;
+              background: linear-gradient(135deg, #70e1f5, #ffd194, #f5a9b8); 
+              background-size: 400% 400%; 
+              animation: waveAnimation 30s ease-in-out infinite; 
+              height: 100vh;
+              overflow: hidden; /* Prevent scrollbars */
+              display: flex;
+              justify-content: center;
+              align-items: center; 
+              flex-direction: column; /* Center content vertically */
+              position: relative; /* Required for positioning the watermark */
             }
-            100% {
-                transform: translateY(-20px);
+            @keyframes waveAnimation {
+              0% { background-position: 0% 0%; }
+              50% { background-position: 100% 100%; }
+              100% { background-position: 0% 0%; }
             }
-        }
-        @keyframes borderAnimation {
-            0% {
-                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+            .title-image {
+              width: 100%;
+              max-width: 800px; /* Adjust as needed */
+              height: auto; /* Maintain aspect ratio */
+              margin-top: 20px; /* Pushes the image further down */
+              margin-bottom: 20px; /* Space below the image */
+              border: 5px solid #ffffff; /* White border for the title image */
+              border-radius: 10px; /* Rounded corners for the border */
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for better visibility */
             }
-            25% {
-                box-shadow: 0px 0px 20px rgba(255, 0, 0, 0.5);
+            .button-container {
+              text-align: center;
+              margin-bottom: 20px;
             }
-            50% {
-                box-shadow: 0px 0px 30px rgba(0, 255, 0, 0.5);
+            .play-button {
+              font-size: 1.2rem;
+              padding: 15px 25px;
+              border: 2px solid transparent;
+              background-color: #dc3545; /* Deep Red */
+              color: white;
+              border-radius: 12px; /* More rounded corners for a softer look */
+              cursor: pointer;
+              position: relative;
+              transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), inset 0 -2px 5px rgba(0, 0, 0, 0.2); /* 3D effect */
             }
-            75% {
-                box-shadow: 0px 0px 40px rgba(0, 0, 255, 0.5);
+            .play-button::before {
+              content: '';
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              width: 100%;
+              height: 100%;
+              border: 2px solid #dc3545; /* Deep Red */
+              border-radius: 12px; /* Match button corners */
+              transform: translate(-50%, -50%) scale(1);
+              transition: transform 0.3s ease;
+              z-index: 0;
             }
-            100% {
-                box-shadow: 0px 0px 50px rgba(255, 255, 0, 0.5);
+            .play-button:hover::before {
+              transform: translate(-50%, -50%) scale(1.1);
             }
-        }
-
-        @media only screen and (max-width: 768px) {
-            body {
-                background-size: contain;
+            .play-button:hover {
+              background-color: #c82333; /* Darker Red */
+              transform: scale(1.05); /* Slightly enlarge the button on hover */
+              box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4), inset 0 -2px 5px rgba(0, 0, 0, 0.3); /* Enhanced 3D effect on hover */
             }
-        }
-        #loading-message {
-            display: none;
-            color: red;
-            font-weight: bold;
-        }
-    </style>
-    <!-- Include dash.js library -->
-    <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
-    <!-- Include HLS.js library -->
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-</head>
-<body>
-    <div class="link-container">
-        <div class="cricket-ball"></div>
-        <button class="button" onclick="playStream()">Play Live Stream</button>
-        <div id="player-container" style="width: 100%; max-width: 800px; display: none;">
-            <video id="videoPlayer" controls style="width: 100%;"></video>
-        </div>
-        <p id="loading-message">Please wait while the player is loading...</p>
-    </div>
-    <script>
-        // Disable right-click
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-        });
-
-        // Disable F12 key
-        document.onkeypress = function (event) {
-            event = (event || window.event);
-            if (event.keyCode === 123) {
-                return false;
+            .play-button span {
+              position: relative;
+              z-index: 1;
             }
-        };
-
-        // Disable Ctrl+Shift+I
-        document.onkeydown = function (event) {
-            event = (event || window.event);
-            if (event.keyCode === 73 && event.ctrlKey && event.shiftKey) {
-                alert("Developer tools are not allowed on this page.");
-                document.body.innerHTML = "";
-                return false;
+            .video-container {
+              width: 360px; /* Fixed width */
+              height: 202px; /* Reduced height */
+              display: flex;
+              justify-content: center; /* Center horizontally */
+              align-items: center; /* Center vertically */
+              border: 5px solid #ffffff; /* Border around the video player */
+              border-radius: 10px; /* Rounded corners for the border */
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for better visibility */
             }
-        };
-
-        function playStream() {
-            var button = document.querySelector('.button');
-            var loadingMessage = document.getElementById('loading-message');
-            button.classList.add('hidden');
-            loadingMessage.style.display = 'block';
-
-            var url = '/playlist.m3u8'; // Request our custom playlist from the worker
-            var playerContainer = document.getElementById('player-container');
-            var videoPlayer = document.getElementById('videoPlayer');
-
-            if(Hls.isSupported()) {
-                var hls = new Hls();
-                hls.loadSource(url);
-                hls.attachMedia(videoPlayer);
-                hls.on(Hls.Events.MANIFEST_PARSED, function() {
-                    playerContainer.style.display = 'block';
-                    loadingMessage.style.display = 'none';
-                    videoPlayer.play();
-                });
-            } else if (videoPlayer.canPlayType('application/vnd.apple.mpegurl')) {
-                videoPlayer.src = url;
-                playerContainer.style.display = 'block';
-                loadingMessage.style.display = 'none';
-                videoPlayer.play();
-            } else {
-                alert("HLS is not supported on this browser.");
+            .video-js {
+              width: 100%; /* Ensure video player takes full width of container */
+              height: 100%; /* Ensure video player takes full height of container */
+              border-radius: 10px; /* Match border radius of the container */
             }
-        }
-    </script>
-</body>
-</html>
+            .watermark-container {
+              position: absolute;
+              bottom: 10px; /* Adjust as needed */
+              right: 10px; /* Adjust as needed */
+              width: 100px; /* Adjust size as needed */
+              height: auto; /* Maintain aspect ratio */
+              opacity: 0.5; /* Adjust opacity as needed */
+            }
+            .watermark {
+              width: 100%; /* Ensure the watermark image fits within the container */
+              height: auto; /* Maintain aspect ratio */
+            }
+            .bottom-title-image {
+              width: 100%;
+              max-width: 800px; /* Adjust as needed */
+              height: auto; /* Maintain aspect ratio */
+              margin-top: 20px; /* Space above the image */
+              border: 5px solid #ffffff; /* White border for the bottom image */
+              border-radius: 10px; /* Rounded corners for the border */
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for better visibility */
+            }
+          </style>
+        </head>
+        <body>
+          <img src="https://thebuddhisttv.wordpress.com/wp-content/uploads/2010/12/cropped-the-buddhist-22.jpg" alt="Page Title" class="title-image">
+          <div class="button-container">
+            <button class="play-button" id="playButton"><span>Play Live Stream</span></button>
+          </div>
+          <div class="video-container" id="videoContainer" style="display: none;">
+            <video id="videoPlayer" class="video-js vjs-default-skin" controls preload="auto">
+              <source src="https://edge3-moblive.yuppcdn.net/trans1sd/smil:dbud28.smil/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9MDMvMTAvMjAyNCAxMTowNjoxMSBBTSZoYXNoX3ZhbHVlPWNZbXlrc0x1YzN3bkNDdFdmbjFnaHc9PSZ2YWxpZG1pbnV0ZXM9NSZpZD15dXBwdHZvdHRfNV8yMDE3NzBfYTA0NmIxNGUtYzBiNS1mOTAzLTgzZjUtZDE3YzY0MmE1YTFjX0xLXzE3NS4xNTcuMTM2LjkwX3NsdF8xX2NoYW5uZWxfMjhfLTEmc3RybV9sZW49MjU=" type="application/x-mpegURL">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <a href="https://www.youtube.com/@TheBuddhistTV/streams" target="_blank" class="watermark-container">
+            <img src="https://yt3.googleusercontent.com/byrVbEGaYhNlgFfFfq40YJgu80ee90f7BXAHuTj-yZwBpXCK7MxWU2L4hvsWEiQmDsKv7yRuGVs=s900-c-k-c0x00ffffff-no-rj" alt="Watermark" class="watermark">
+          </a>
+          <img src="https://thebuddhisttv.wordpress.com/wp-content/uploads/2010/12/cropped-the-buddhist-22.jpg" alt="Page Title Bottom" class="bottom-title-image">
+          <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
+          <script>
+            document.getElementById('playButton').addEventListener('click', function() {
+              document.querySelector('.button-container').style.display = 'none';
+              document.getElementById('videoContainer').style.display = 'flex';
+              var player = videojs('videoPlayer');
+              player.ready(function() {
+                player.play(); // Start playback when player is ready
+              });
+            });
+  
+            // Disable right-click
+            document.addEventListener('contextmenu', function(e) {
+              e.preventDefault();
+            });
+          </script>
+        </body>
+      </html>
