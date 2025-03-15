@@ -154,6 +154,9 @@
         const channelName = urlParams.get('channel');
         const streamURL = urlParams.get('stream');
 
+        console.log('Channel Name:', channelName);
+        console.log('Stream URL:', streamURL);
+
         // Set the channel name and stream URL
         document.getElementById('channelName').textContent = channelName;
         document.getElementById('streamSource').src = streamURL;
